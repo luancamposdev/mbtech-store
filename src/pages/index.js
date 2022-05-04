@@ -8,13 +8,15 @@ function Home({ products, bannerData }) {
     <>
       <MbtechBanner mbtechBanner={bannerData.length && bannerData[0]} />
       <div className="products-heading">
-        <h2>Beset Selling Products</h2>
-        <p>Spearks of many variants</p>
+        <h2>Produtos mais vendidos</h2>
+        <p>Tecnologia ao seu alcance</p>
       </div>
       <div className="products-container">
-        {products?.map((product) => product.name)}
+        {products?.map((product) => (
+          <Product key={product._id} product={product} />
+        ))}
       </div>
-      <FooterBanner />
+      <FooterBanner footerBanner={bannerData && bannerData[0]} />
     </>
   );
 }
