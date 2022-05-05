@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { AiFillGithub, AiFillLinkedin } from "react-icons/ai";
 
 function Footer() {
@@ -8,8 +9,16 @@ function Footer() {
         reservados
       </p>
       <p className="icons">
-        <AiFillGithub />
-        <AiFillLinkedin />
+        <Link href="https://github.com/luancamposreis">
+          <a>
+            <AiFillGithub />
+          </a>
+        </Link>
+        <Link href="https://linkedin.com/in/luan-campos-191567113">
+          <a>
+            <AiFillLinkedin />
+          </a>
+        </Link>
       </p>
     </div>
   );
