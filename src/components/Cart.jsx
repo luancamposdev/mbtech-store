@@ -1,5 +1,7 @@
+import axios from "axios";
 import Link from "next/link";
 import { useRef } from "react";
+import toast from "react-hot-toast";
 import {
   AiOutlineLeft,
   AiOutlineMinus,
@@ -10,6 +12,7 @@ import { TiDeleteOutline } from "react-icons/ti";
 
 import { useStateContext } from "../context/StateContext";
 import { urlFor } from "../lib/client";
+import getStripe from "../lib/getStripe";
 
 function Cart() {
   const cartRef = useRef();
@@ -21,6 +24,25 @@ function Cart() {
     toggleCartItemQuantity,
     onRemove,
   } = useStateContext();
+
+  async function handleCheckout() {
+    const stripe = await getStripe();
+
+    const response = await axios.post('/api/stripe', {
+      
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      data: cartItems,
+    });
+
+    // if (response.statusCode === 500) return;
+
+
+    toast.loading("Aguarde...");
+
+    stripe.redirectToCheckout({ sessionId: response.data.id });
+  }
 
   return (
     <div className="cart-wrapper" ref={cartRef}>
@@ -119,7 +141,7 @@ function Cart() {
               </h3>
             </div>
             <div className="btn-container">
-              <button type="button" className="btn" onClick="">
+              <button type="button" className="btn" onClick={handleCheckout}>
                 Comprar com Stripe
               </button>
             </div>
