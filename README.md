@@ -27,7 +27,7 @@ Durante o desenvolvimento, foram utilizados o NextJS, React, Stripe, Sanity, Rea
     $ git clone https://github.com/luancamposreis/mbtech-store.git
 
     // Acessar diretório
-    $ cd cd mbtech-store
+    $ cd mbtech-store
 
     // Instalar dependências
     $ yarn
